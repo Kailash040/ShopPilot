@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Dropdown, Avatar, Badge } from "../components/ui";
+import { Button, Card, Dropdown, Avatar, Badge, Chart } from "../components/ui";
 import {
   GridIcon,
   ShoppingBagIcon,
@@ -467,33 +467,45 @@ const Dashboard = () => {
                 />
               </div>
             </div>
-
-            <div className="h-64 flex items-end justify-between space-x-2">
-              {chartData.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center space-y-2 flex-1"
-                >
-                  <div
-                    className="w-full bg-blue-500 rounded-t"
-                    style={{
-                      height: `${Math.max((item.value / maxValue) * 200, 4)}px`,
-                      minHeight: "4px",
-                    }}
-                  ></div>
-                  <span className="text-xs text-gray-600">{item.label}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex justify-between text-xs text-gray-500 mt-2">
-              <span>0</span>
-              <span>20k</span>
-              <span>40k</span>
-              <span>60k</span>
-              <span>80k</span>
-              <span>100k</span>
-            </div>
+            <Chart
+              type="bar"
+              className="h-64"
+              data={{
+                labels: chartData.map((d) => d.label),
+                datasets: [
+                  {
+                    label: summaryMetric === "sales" ? "Sales" : summaryMetric,
+                    data: chartData.map((d) => d.value),
+                    backgroundColor: "rgba(59,130,246,0.6)",
+                    borderColor: "rgba(59,130,246,1)",
+                    borderWidth: 1,
+                    borderRadius: 6,
+                  },
+                ],
+              }}
+              options={{
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    callbacks: {
+                      label: (ctx) => `${ctx.parsed.y}`,
+                    },
+                  },
+                },
+                scales: {
+                  x: {
+                    grid: { display: false },
+                  },
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      callback: (value) => value,
+                    },
+                  },
+                },
+              }}
+            />
           </Card>
         </main>
       </div>
