@@ -7,3 +7,4 @@ export { default as Dropdown } from './Dropdown';
 export { default as Avatar } from './Avatar';
 export { default as Badge } from './Badge';
 export { default as Chart } from './Chart';
+export {default as DashboardSummaryCard} from './DashboardSummaryCard';
