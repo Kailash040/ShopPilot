@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
   const location = useLocation();
 
   if (!isAuthenticated) {
-    // Redirect to sign in page with return url
+  
     return <Navigate to="/signin" state={{ from: location }} replace />;
   }
 
