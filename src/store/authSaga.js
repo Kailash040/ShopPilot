@@ -8,7 +8,6 @@ import {
   signUpFailure,
 } from './authSlice';
 
-// Mock API functions - replace with actual API calls
 const mockApiCall = (url, data) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -37,8 +36,6 @@ const mockApiCall = (url, data) => {
     }, 1000);
   });
 };
-
-// Sign In Saga
 function* signInSaga(action) {
   try {
     const { email, password } = action.payload;
@@ -48,8 +45,6 @@ function* signInSaga(action) {
     yield put(signInFailure(error.message));
   }
 }
-
-// Sign Up Saga
 function* signUpSaga(action) {
   try {
     const { name, email, password } = action.payload;
@@ -59,8 +54,6 @@ function* signUpSaga(action) {
     yield put(signUpFailure(error.message));
   }
 }
-
-// Root Saga
 export function* authSaga() {
   yield takeLatest(signInStart.type, signInSaga);
   yield takeLatest(signUpStart.type, signUpSaga);
