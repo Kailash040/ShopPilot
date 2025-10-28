@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Button, Card, Dropdown, Avatar, Badge, Chart } from "../components/ui";
 import {
   GridIcon,
@@ -26,6 +26,7 @@ import { signOut } from "../store/authSlice";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useSelector((state) => state.auth);
 
   // State for dropdowns and interactions
@@ -109,17 +110,25 @@ const Dashboard = () => {
 
         {/* Navigation */}
         <nav className="flex-1 px-4 py-6 space-y-2">
-          <a
-            href="#"
-            className="flex items-center space-x-3 px-3 py-2 bg-blue-50 text-blue-700 rounded-lg"
+          <Link
+            to="/dashboard"
+            className={`flex items-center space-x-3 px-3 py-2 rounded-lg ${
+              location.pathname === '/dashboard'
+                ? 'bg-blue-50 text-blue-700'
+                : 'text-gray-700 hover:bg-gray-50'
+            }`}
           >
             <GridIcon className="h-5 w-5" />
             <span className="font-medium">Dashboard</span>
-          </a>
+          </Link>
 
-          <a
-            href="#"
-            className="flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg group"
+          <Link
+            to="/orders"
+            className={`flex items-center justify-between px-3 py-2 rounded-lg group ${
+              location.pathname === '/orders'
+                ? 'bg-blue-50 text-blue-700'
+                : 'text-gray-700 hover:bg-gray-50'
+            }`}
           >
             <div className="flex items-center space-x-3">
               <ShoppingBagIcon className="h-5 w-5" />
@@ -128,27 +137,39 @@ const Dashboard = () => {
             <Badge variant="orange" size="sm">
               3
             </Badge>
-          </a>
+          </Link>
 
-          <a
-            href="#"
-            className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg"
+          <Link
+            to="/customers"
+            className={`flex items-center space-x-3 px-3 py-2 rounded-lg ${
+              location.pathname === '/customers'
+                ? 'bg-blue-50 text-blue-700'
+                : 'text-gray-700 hover:bg-gray-50'
+            }`}
           >
             <UsersIcon className="h-5 w-5" />
             <span>Customers</span>
-          </a>
+          </Link>
 
-          <a
-            href="#"
-            className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg"
+          <Link
+            to="/inventory"
+            className={`flex items-center space-x-3 px-3 py-2 rounded-lg ${
+              location.pathname === '/inventory'
+                ? 'bg-blue-50 text-blue-700'
+                : 'text-gray-700 hover:bg-gray-50'
+            }`}
           >
             <FolderIcon className="h-5 w-5" />
             <span>Inventory</span>
-          </a>
+          </Link>
 
-          <a
-            href="#"
-            className="flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg group"
+          <Link
+            to="/conversations"
+            className={`flex items-center justify-between px-3 py-2 rounded-lg group ${
+              location.pathname === '/conversations'
+                ? 'bg-blue-50 text-blue-700'
+                : 'text-gray-700 hover:bg-gray-50'
+            }`}
           >
             <div className="flex items-center space-x-3">
               <ChatBubbleIcon className="h-5 w-5" />
@@ -157,15 +178,19 @@ const Dashboard = () => {
             <Badge variant="orange" size="sm">
               18
             </Badge>
-          </a>
+          </Link>
 
-          <a
-            href="#"
-            className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg"
+          <Link
+            to="/settings"
+            className={`flex items-center space-x-3 px-3 py-2 rounded-lg ${
+              location.pathname === '/settings'
+                ? 'bg-blue-50 text-blue-700'
+                : 'text-gray-700 hover:bg-gray-50'
+            }`}
           >
             <CogIcon className="h-5 w-5" />
             <span>Settings</span>
-          </a>
+          </Link>
         </nav>
 
         {/* Bottom Section */}
