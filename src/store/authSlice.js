@@ -71,8 +71,6 @@ const authSlice = createSlice({
       state.error = null;
       state.signUpError = null;
     },
-
-    // Check auth status
     checkAuthStatus: (state) => {
       const token = localStorage.getItem('token');
       if (token) {

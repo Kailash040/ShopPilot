@@ -10,7 +10,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   useEffect(() => {
-    // Check authentication status on app load
     store.dispatch(checkAuthStatus());
   }, []);
 
